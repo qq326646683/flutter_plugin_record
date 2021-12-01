@@ -155,13 +155,13 @@ static DPAudioPlayer *playerManager = nil;
 
 - (void)proximityStateDidChange
 {
-    if ([UIDevice currentDevice].proximityState) {
-        NSLog(@"有物品靠近");
-        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-    } else {
-        NSLog(@"有物品离开");
-        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
-    }
+  //  if ([UIDevice currentDevice].proximityState) {
+   //     NSLog(@"有物品靠近");
+    //    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+//    } else {
+//        NSLog(@"有物品离开");
+//        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+//    }
 }
 
 
