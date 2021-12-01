@@ -39,7 +39,7 @@ static DPAudioPlayer *playerManager = nil;
             [[NSData data] writeToFile:amrPlayerFilePath atomically:YES];
         }
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(proximityStateDidChange) name:UIDeviceProximityStateDidChangeNotification object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(proximityStateDidChange) name:UIDeviceProximityStateDidChangeNotification object:nil];
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
         [[AVAudioSession sharedInstance] setActive:YES error:nil];
 
@@ -51,16 +51,16 @@ static DPAudioPlayer *playerManager = nil;
 {
 //    if (isPlaying) return;
     //打开红外传感器
-    [[UIDevice currentDevice] setProximityMonitoringEnabled:YES];
+//    [[UIDevice currentDevice] setProximityMonitoringEnabled:YES];
     AVAudioSession *session = [AVAudioSession sharedInstance];
     [session setActive:true error:nil];
     [session setCategory:AVAudioSessionCategoryPlayback error:nil];
 //    //默认情况下扬声器播放
 //    AVAudioSessionPortOverride portOverride = AVAudioSessionPortOverrideNone;
-//    [[AVAudioSession sharedInstance] overrideOutputAudioPort:portOverride error:nil];
-    
+//    [[AVAudioSession sharedInstance] overrideOutputAudioPorta:portOverride error:nil];
+
     //self.audioPlayer = [[AVAudioPlayer alloc]initWithData:[self conversionAMRDataToWAVData:data] error:nil];
-    
+
     if (isPlaying){
         [self.audioPlayer stop];
         self.audioPlayer = nil;
@@ -73,7 +73,7 @@ static DPAudioPlayer *playerManager = nil;
     self.audioPlayer.numberOfLoops = 0;
     [self.audioPlayer prepareToPlay];
     [self.audioPlayer play];
-    
+
     if ([self.audioPlayer isPlaying]) {
         isPlaying = YES;
         if (self.startPlaying) {
@@ -92,16 +92,16 @@ static DPAudioPlayer *playerManager = nil;
 {
     if (isPlaying){
         //关闭红外传感器
-        [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
+//        [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
         [self.audioPlayer pause];
         isPlaying = NO;
     }else{
         [self.audioPlayer play];
         isPlaying = YES;
     }
-   
+
     return isPlaying;
-    
+
 }
 
 
@@ -109,7 +109,7 @@ static DPAudioPlayer *playerManager = nil;
 {
     if (!isPlaying) return;
     //关闭红外传感器
-    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
+//    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
     [self.audioPlayer stop];
     self.audioPlayer = nil;
     isPlaying = NO;
@@ -139,10 +139,10 @@ static DPAudioPlayer *playerManager = nil;
 ////转换amr文件类型data为wav文件类型data
 //- (NSData *)conversionAMRDataToWAVData:(NSData *)amrData
 //{
-//    
+//
 //    NSString *wavPlayerFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"WAVtemporaryPlayer.wav"];
 //    NSString *amrPlayerFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"AMRtemporaryPlayer.amr"];
-//    
+//
 //    //amr的data写入文件
 //    [amrData writeToFile:amrPlayerFilePath atomically:YES];
 //    //将AMR文件转码成WAVE文件
@@ -167,8 +167,8 @@ static DPAudioPlayer *playerManager = nil;
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceProximityStateDidChangeNotification object:nil];
-    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceProximityStateDidChangeNotification object:nil];
+//    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
 }
 
 @end
